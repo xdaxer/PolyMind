@@ -15,7 +15,7 @@ const generateToken = async (user) => {
       isAdmin: user.isAdmin,
     },
     SECRET_KEY,
-    { expiresIn: "12h" }
+    { expiresIn: "72h" }
   );
 
   return token;

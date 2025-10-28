@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./Models/db.js";
 import authRouter from "./routes/auth.route.js";
 import paymentRouter from "./routes/payment.route.js";
+import chatRouter from "./routes/chat.route.js";
 
 dotenv.config();
 await connectDB();
@@ -17,6 +18,7 @@ app.set("trust proxy", true);
 
 app.use("/auth", authRouter);
 app.use("/payment", paymentRouter);
+app.use("/chat", chatRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is Runing http://localhost:${PORT}`);

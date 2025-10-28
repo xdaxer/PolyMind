@@ -7,7 +7,7 @@ const messageSchema = new Schema(
       ref: "User",
       required: true,
     },
-    chatID: {     
+    chatID: {
       type: Schema.Types.ObjectId,
       ref: "Chat",
       required: true,
@@ -25,6 +25,11 @@ const messageSchema = new Schema(
       type: String,
       enum: ["gpt", "gemini", "deepseek", "perplexity", "llama"],
       required: true,
+    },
+    isSelected: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
     date: {
       type: Date,
