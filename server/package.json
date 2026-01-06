@@ -1,17 +1,22 @@
 {
-  "name": "polymind-backend",
+  "name": "polymind-server",
   "version": "1.0.0",
   "description": "polymind için backend uygulması",
   "license": "ISC",
-  "author": "",
+  "author": "Abdullah `daxer` Yirik",
   "type": "module",
+  "keywords": [
+    "polymind"
+  ],
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon -q src/app.js"
+    "dev": "nodemon -q src/app.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "@google/genai": "^1.25.0",
+    "@huggingface/inference": "^4.13.3",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
@@ -22,6 +27,9 @@
     "openai": "^6.3.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "jest": "^30.2.0",
+    "nock": "^14.0.10",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
   }
 }

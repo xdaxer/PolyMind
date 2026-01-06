@@ -11,26 +11,33 @@ if (!OPENAI_API_KEY) {
   throw new Error("OPENAI_API_KEY environment variable is not set!");
 }
 
- 
-const Gpt = async (prompt, history = []) => {
+const Gpt = async (prompt, history = [], isStream = false) => {
   const client = new OpenAI({ apiKey: OPENAI_API_KEY });
 
- 
-  const messages = history.flatMap(msg => [
+  const messages = history.flatMap((msg) => [
     { role: "user", content: msg.prompt },
-    { role: "assistant", content: msg.response }
+    { role: "assistant", content: msg.response },
   ]);
 
-   messages.push({ role: "user", content: prompt });
+  messages.push({ role: "user", content: prompt });
 
-   const response = await client.chat.completions.create({
-    model: OPENAI_MODEL,
-    messages: messages,
-  });
+  if (isStream) {
+    const stream = await client.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: messages,
+      stream: true,
+    });
+    return stream;
+  } else {
+    const response = await client.chat.completions.create({
+      model: OPENAI_MODEL,
+      messages: messages,
+    });
 
-  const messageContent = response.choices[0].message.content;
- 
-  return messageContent;
+    const messageContent = response.choices[0].message.content;
+
+    return messageContent;
+  }
 };
 
 export default Gpt;

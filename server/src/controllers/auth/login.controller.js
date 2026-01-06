@@ -39,7 +39,7 @@ const loginController = async (req, res) => {
     token,
     username: user.username,
     email: user.email,
-  });
+   });
 };
 
 export default loginController;

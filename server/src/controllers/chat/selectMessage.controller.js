@@ -28,12 +28,15 @@ const selectMessageController = async (req, res) => {
     await selectedMessage.save(); 
 
     
-    await MessageModel.deleteOne({
-      chatID: chatID,
-      prompt: selectedMessage.prompt,
-      _id: { $ne: messageID },
-      isSelected: false
-    });
+    await MessageModel.updateMany(
+      { 
+        chatID: chatID, 
+        prompt: selectedMessage.prompt, 
+        _id: { $ne: messageID },
+        isSelected: false
+      },
+      { $set: { isDeleted: true } }
+    );
 
     return res.status(200).json({ message: "Mesaj seçimi başarılı.", selectedMessage });
 

@@ -31,6 +31,10 @@ const messageSchema = new Schema(
       required: true,
       default: false,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
     date: {
       type: Date,
       default: Date.now,
@@ -40,6 +44,8 @@ const messageSchema = new Schema(
     timestamps: true,
   }
 );
+
+messageSchema.index({ chatID: 1, isSelected: 1 });
 
 const MessageModel =
   mongoose.models.Message || mongoose.model("Message", messageSchema);

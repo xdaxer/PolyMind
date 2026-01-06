@@ -11,6 +11,10 @@ const chatSchema = new Schema(
       type: String,
       required: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
     createAt: {
       type: Date,
       default: Date.now,
@@ -20,6 +24,8 @@ const chatSchema = new Schema(
     timestamps: true,
   }
 );
+
+chatSchema.index({ userID: 1 });
 
 const ChatModel = mongoose.models.Chat || mongoose.model("Chat", chatSchema);
 

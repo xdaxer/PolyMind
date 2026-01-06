@@ -10,29 +10,22 @@ if (!GEMINI_MODEL) {
   throw new Error("GEMINI_MODEL environment variable is not set!");
 }
 
-// Fonksiyon artık 'history' adında ikinci bir parametre alıyor.
-const Gemini = async (prompt, history = []) => {
-  const genAI = new GoogleGenAI(GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
+const genAI = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-  // Geçmişi, Google AI'ın beklediği 'user' ve 'model' rolleri formatına dönüştür.
-  const chatHistory = history.flatMap(msg => [
+const Gemini = async (prompt, history = []) => {
+  const chatHistory = history.flatMap((msg) => [
     { role: "user", parts: [{ text: msg.prompt }] },
-    { role: "model", parts: [{ text: msg.response }] }
+    { role: "model", parts: [{ text: msg.response }] },
   ]);
 
-  // Sohbeti geçmişle birlikte başlat.
-  const chat = model.startChat({
+  const chat = genAI.chats.create({
+    model: GEMINI_MODEL,
     history: chatHistory,
   });
 
-  // Yeni prompt'u gönder ve sonucu al.
-  const result = await chat.sendMessage(prompt);
-  const response = result.response;
-  const text = response.text();
+  const response = await chat.sendMessage({ message: prompt });
 
-  // Sadece modelin metin yanıtını geri dönelim.
-  return text;
+  return response.text;
 };
 
 export default Gemini;
