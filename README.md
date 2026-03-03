@@ -4,7 +4,7 @@
   <br>
 </h1>
 
-<h4 align="center">Çoklu yapay zeka modelleriyle metin, görsel, video ve müzik üretebileceğiniz full-stack AI platformu.</h4>
+<h4 align="center">A full-stack AI platform where you can generate text, images, videos, and music with multiple AI models.</h4>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
@@ -14,56 +14,60 @@
   <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
 </p>
 
----
-
-## 📌 Özellikler
-
-- 🤖 **Çoklu LLM Desteği** — Google Gemini, OpenAI GPT, DeepSeek ve Perplexity modellerini aynı arayüzden kullanın
-- 🖼️ **Görsel Üretimi** — Yapay zeka ile metinden görsel oluşturun
-- 🎬 **Video Üretimi** — Metinden video içerik üretin
-- 🎵 **Müzik Üretimi** — Yapay zeka destekli müzik oluşturun
-- 🔮 **Prompt Wizard** — Daha iyi sonuçlar için otomatik prompt geliştirici
-- � **Sohbet Geçmişi** — Tüm konuşmalarınız kaydedilir ve model seçimi korunur
-- 💳 **Abonelik Sistemi** — Iyzipay entegrasyonu ile ödeme altyapısı
-- 🔐 **JWT Kimlik Doğrulama** — Güvenli kullanıcı kaydı ve girişi
-- 📱 **Mobil Uyumlu** — Capacitor ile Android uygulama desteği
+<p align="center">
+ 🇬🇧 English | <a href="./README_TR.md">🇹🇷 Türkçe</a>
+</p>
 
 ---
 
-## 🏗️ Proje Yapısı
+## 📌 Features
+
+- 🤖 **Multi-LLM Support** — Use Google Gemini, OpenAI GPT, DeepSeek, and Perplexity models from the same interface
+- 🖼️ **Image Generation** — Generate images from text using AI
+- 🎬 **Video Generation** — Produce video content from text
+- 🎵 **Music Generation** — Create AI-powered music
+- 🔮 **Prompt Wizard** — Automatic prompt enhancer for better results
+- 💬 **Chat History** — All conversations are saved, model selection is preserved
+- 💳 **Subscription System** — Payment infrastructure with Iyzipay integration
+- 🔐 **JWT Authentication** — Secure user registration and login
+- 📱 **Mobile Compatible** — Android app support via Capacitor
+
+---
+
+## 🏗️ Project Structure
 
 ```
 PolyMind/
 ├── client/                  # React + Vite frontend
 │   └── src/
 │       ├── pages/
-│       │   ├── home/        # Ana sohbet ekranı
-│       │   ├── login/       # Giriş sayfası
-│       │   ├── register/    # Kayıt sayfası
-│       │   ├── payment/     # Ödeme sayfası
-│       │   ├── image/       # Görsel üretim
-│       │   ├── video/       # Video üretim
-│       │   └── music/       # Müzik üretim
-│       ├── components/      # Yeniden kullanılabilir bileşenler
+│       │   ├── home/        # Main chat screen
+│       │   ├── login/       # Login page
+│       │   ├── register/    # Register page
+│       │   ├── payment/     # Payment page
+│       │   ├── image/       # Image generation
+│       │   ├── video/       # Video generation
+│       │   └── music/       # Music generation
+│       ├── components/      # Reusable components
 │       ├── context/         # React Context (global state)
-│       └── router/          # React Router tanımları
+│       └── router/          # React Router definitions
 │
 └── server/                  # Express.js backend
     └── src/
-        ├── app.js           # Uygulama giriş noktası
-        ├── routes/          # API rotaları
+        ├── app.js           # Application entry point
+        ├── routes/          # API routes
         │   ├── auth.route.js
         │   ├── chat.route.js
         │   └── payment.route.js
-        ├── controllers/     # İş mantığı
-        │   ├── auth/        # Kayıt & giriş
-        │   ├── chat/        # AI sohbet, medya üretimi
-        │   └── payment/     # Iyzipay ödeme işlemleri
+        ├── controllers/     # Business logic
+        │   ├── auth/        # Register & login
+        │   ├── chat/        # AI chat, media generation
+        │   └── payment/     # Iyzipay payment processing
         ├── middlewares/
-        │   ├── checkToken.js           # JWT doğrulama
-        │   └── checkSubscriptionDate.js # Abonelik kontrolü
+        │   ├── checkToken.js           # JWT verification
+        │   └── checkSubscriptionDate.js # Subscription check
         ├── Models/
-        │   ├── db.js                   # MongoDB bağlantısı
+        │   ├── db.js                   # MongoDB connection
         │   └── schemas/
         │       ├── user.schema.js
         │       ├── chat.schema.js
@@ -86,74 +90,74 @@ PolyMind/
 
 ## 🌐 API Endpoints
 
-### � Auth — `/auth`
+### 🔐 Auth — `/auth`
 
-| Method | Endpoint         | Açıklama                    | Auth |
-|--------|------------------|-----------------------------|------|
-| POST   | `/auth/register` | Yeni kullanıcı kaydı        | ❌   |
-| POST   | `/auth/login`    | Kullanıcı girişi (JWT alır) | ❌   |
-| GET    | `/auth/me`       | Aktif kullanıcı bilgisi     | ✅   |
+| Method | Endpoint         | Description                     | Auth |
+|--------|------------------|---------------------------------|------|
+| POST   | `/auth/register` | Register a new user             | ❌   |
+| POST   | `/auth/login`    | User login (returns JWT)        | ❌   |
+| GET    | `/auth/me`       | Get current user info           | ✅   |
 
 ### 💬 Chat — `/chat`
 
-| Method | Endpoint                  | Açıklama                               | Auth | Abonelik |
-|--------|---------------------------|----------------------------------------|------|----------|
-| GET    | `/chat/`                  | Sohbet listesini getir                 | ✅   | ❌        |
-| GET    | `/chat/:chatID`           | Sohbet geçmişini getir                 | ✅   | ❌        |
-| POST   | `/chat/message`           | Yeni mesaj gönder (LLM yanıtı al)      | ✅   | ✅        |
-| POST   | `/chat/select`            | Model seç ve yanıtı kaydet             | ✅   | ✅        |
-| POST   | `/chat/prompt`            | Prompt Wizard ile prompt geliştir      | ✅   | ✅        |
-| DELETE | `/chat/delete/:chatID`    | Sohbeti sil                            | ✅   | ❌        |
-| POST   | `/chat/generate-image`    | Yapay zeka ile görsel üret             | ✅   | ✅        |
-| POST   | `/chat/generate-video`    | Yapay zeka ile video üret              | ✅   | ✅        |
-| POST   | `/chat/music`             | Yapay zeka ile müzik üret              | ✅   | ✅        |
-| GET    | `/chat/music/:taskId`     | Müzik üretim durumunu sorgula          | ✅   | ❌        |
-| POST   | `/chat/music/callback`    | Müzik üretim webhook callback          | ❌   | ❌        |
+| Method | Endpoint                  | Description                                | Auth | Subscription |
+|--------|---------------------------|--------------------------------------------|------|--------------|
+| GET    | `/chat/`                  | Get chat list                              | ✅   | ❌           |
+| GET    | `/chat/:chatID`           | Get chat history                           | ✅   | ❌           |
+| POST   | `/chat/message`           | Send a new message (get LLM response)      | ✅   | ✅           |
+| POST   | `/chat/select`            | Select model and save response             | ✅   | ✅           |
+| POST   | `/chat/prompt`            | Enhance prompt with Prompt Wizard          | ✅   | ✅           |
+| DELETE | `/chat/delete/:chatID`    | Delete a chat                              | ✅   | ❌           |
+| POST   | `/chat/generate-image`    | Generate an image with AI                  | ✅   | ✅           |
+| POST   | `/chat/generate-video`    | Generate a video with AI                   | ✅   | ✅           |
+| POST   | `/chat/music`             | Generate music with AI                     | ✅   | ✅           |
+| GET    | `/chat/music/:taskId`     | Query music generation status              | ✅   | ❌           |
+| POST   | `/chat/music/callback`    | Music generation webhook callback          | ❌   | ❌           |
 
 ### 💳 Payment — `/payment`
 
-| Method | Endpoint    | Açıklama                    | Auth |
-|--------|-------------|-----------------------------|------|
-| POST   | `/payment/` | Iyzipay ile ödeme başlat    | ✅   |
+| Method | Endpoint    | Description                  | Auth |
+|--------|-------------|------------------------------|------|
+| POST   | `/payment/` | Initiate payment via Iyzipay | ✅   |
 
-> ✅ = gerekli, ❌ = gerekli değil
+> ✅ = required, ❌ = not required
 
 ---
 
-## ⚡ Hızlı Başlangıç
+## ⚡ Quick Start
 
-### Gereksinimler
+### Prerequisites
 
 - [Node.js](https://nodejs.org/) v18+
-- [MongoDB](https://www.mongodb.com/) (local veya Atlas)
-- API anahtarları (Gemini, OpenAI, vb.)
+- [MongoDB](https://www.mongodb.com/) (local or Atlas)
+- API keys (Gemini, OpenAI, etc.)
 
-### 1. Repoyu Klonla
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/kullanici-adiniz/polymind.git
+git clone https://github.com/your-username/polymind.git
 cd polymind
 ```
 
-### 2. Backend Kurulumu
+### 2. Backend Setup
 
 ```bash
 cd server
 npm install
 ```
 
-`.env.example` dosyasını kopyalayıp `.env` olarak düzenle:
+Copy `.env.example` and rename it to `.env`:
 
 ```bash
 cp .env.example .env
 ```
 
-`.env` dosyasını kendi bilgilerinle doldur:
+Fill in `.env` with your credentials:
 
 ```env
 PORT=8084
 DB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/polymind
-SECRET_KEY=gizli_anahtar_buraya
+SECRET_KEY=your_secret_key
 IYZIPAY_API_URI=https://sandbox-api.iyzipay.com
 IYZIPAY_API_KEY=iyzipay_api_key
 GEMINI_API_KEY=gemini_api_key
@@ -167,17 +171,17 @@ PERPLEXITY_MODEL=sonet
 POYO_API_KEY=poyo_api_key
 ```
 
-Backend'i başlat:
+Start the backend:
 
 ```bash
-# Geliştirme modu (nodemon ile)
+# Development mode (with nodemon)
 npm run dev
 
-# Production modu
+# Production mode
 npm start
 ```
 
-### 3. Frontend Kurulumu
+### 3. Frontend Setup
 
 ```bash
 cd client
@@ -185,42 +189,42 @@ npm install
 npm run dev
 ```
 
-Uygulama varsayılan olarak şu adreslerde çalışır:
+The application runs on these addresses by default:
 - **Frontend:** `http://localhost:5173`
 - **Backend:** `http://localhost:8084`
 
 ---
 
-## �️ Teknoloji Yığını
+## 🛠️ Tech Stack
 
-| Katman      | Teknoloji                                          |
-|-------------|----------------------------------------------------|
-| Frontend    | React 19, Vite, TailwindCSS 4, React Router 7      |
-| Backend     | Node.js, Express 5, Mongoose                       |
-| Veritabanı  | MongoDB                                            |
-| AI Modeller | Google Gemini, OpenAI GPT, DeepSeek, Perplexity    |
-| Ödeme       | Iyzipay                                            |
-| Auth        | JWT (jsonwebtoken), bcrypt                         |
-| Mobil       | Capacitor (Android)                                |
-| Test        | Jest, Supertest, Cypress                           |
-
----
-
-## � Lisans
-
-Bu proje [ISC](./LICENSE) lisansı ile lisanslanmıştır.
+| Layer      | Technology                                          |
+|------------|-----------------------------------------------------|
+| Frontend   | React 19, Vite, TailwindCSS 4, React Router 7       |
+| Backend    | Node.js, Express 5, Mongoose                        |
+| Database   | MongoDB                                             |
+| AI Models  | Google Gemini, OpenAI GPT, DeepSeek, Perplexity     |
+| Payment    | Iyzipay                                             |
+| Auth       | JWT (jsonwebtoken), bcrypt                          |
+| Mobile     | Capacitor (Android)                                 |
+| Testing    | Jest, Supertest, Cypress                            |
 
 ---
 
-## 📬 İletişim
+## 📄 License
+
+This project is licensed under the [ISC](./LICENSE) license.
+
+---
+
+## 📬 Contact
 
 **Abdullah "daxer" Yirik**
 
-Proje hakkında soru, öneri veya iş birliği için iletişime geçebilirsiniz:
+Feel free to reach out for questions, suggestions, or collaboration:
 
-- 🌐 Portfolio Sayfam: [daxer.dev](https://daxer.dev)
-- 📧 E-posta: [contact@daxer.dev](mailto:[contact@daxer.dev])
+- 🌐 Portfolio: [daxer.dev](https://daxer.dev)
+- 📧 Email: [contact@daxer.dev](mailto:contact@daxer.dev)
 
 ---
 
-<p align="center">⭐ Projeyi beğendiyseniz yıldız vermeyi unutmayın!</p>
+<p align="center">⭐ If you like the project, don't forget to give it a star!</p>
